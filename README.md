@@ -25,6 +25,7 @@ a bazy trzymamy w MYSQL, chcę spróbować swoich sił w technologiach typowo fu
 - zacząłem od Express.js -> popularny i dość często polecany framework NODE.JS (z silnikiem template'ow handlebars)
 - po stronie frontu na razie zostaje czysty JS ewentualnie jQuery ale w planach mam również spróbować wdrożyć React'a
 - baza bo i tak prędzej czy później się pojawi - stawiam na MongoDB
+- jako pomoc czy stylowaniu, zachowaniu responsywności i oszczędzenie sobie czasu wybrałem Bootstrap'a
 
 
 ## Uruchomienie
