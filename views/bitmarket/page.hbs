@@ -1,0 +1,35 @@
+<div class="container mt20">
+	<div class="col-sm-12">
+		<h1></h1>
+	</div>
+	<div class="col-sm-12">
+		<div class="jumbotron">
+			<h1 class="display-3">{{title}}</h1>
+			<p class="lead">{{text}}</p>
+			<hr class="my-4">
+		</div>
+		<div class="card">
+			<h4 class="card-header">Info</h4>
+			<div class="card-body">
+				<h4 class="card-title">Plik zawiera opis bieżącego stanu giełdy, jako obiekt z następującymi polami:</h4>
+				<ul>
+					<li><strong>last</strong> - kwota ostatniej transakcji.</li>
+					<li><strong>high</strong> - najwyższa kwota transakcji w ciągu ostatnich 24 godzin.</li>
+					<li><strong>low</strong> - najniższa kwota transakcji w ciągu ostatnich 24 godzin.</li>
+					<li><strong>vwap</strong> - średnia ważona kursu z ostatnich 24 godzin.</li>
+					<li><strong>volume</strong> - wolumen transakcji z ostatnich 24 godzin.</li>
+					<li><strong>bid</strong> - najwyższa oferta kupna.</li>
+					<li><strong>ask</strong> - najniższa oferta sprzedaży.</li>
+				</ul>
+				<div class="alert alert-success" role="alert">
+					<h4 class="alert-danger">Well done!</h4>
+					<p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+					<hr>
+					<p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<p>{{ask.ask}}</p>
+</div>
+<script src="/modules/bitmarket.js"></script>
