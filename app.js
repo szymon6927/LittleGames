@@ -9,6 +9,7 @@ var expressHbs = require('express-handlebars');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var bitmarket = require('./routes/bitmarket');
+var tictactoe = require('./routes/tictactoe');
 
 var app = express();
 
@@ -30,6 +31,7 @@ app.use('/css', express.static(__dirname + '/node_modules/materialize-css/dist/c
 app.use('/', index);
 app.use('/users', users);
 app.use('/bitmarket', bitmarket);
+app.use('/tictactoe', tictactoe);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
