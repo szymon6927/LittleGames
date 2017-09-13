@@ -4,6 +4,9 @@ html {
 strong {
     font-weight: 600;
 }
+.mb0 {
+	margin-bottom: 0;
+}
 .mt20 {
 	margin-top: 20px;
 }
@@ -21,4 +24,31 @@ strong {
 }
 .subtitle {
 	font-size: 19px;
+}
+
+/* CSS dla TicTacToe */
+.tictactoe-wraper {
+	text-align: center;
+}
+.tictactoe {
+	width: 400px;
+    height: 350px;
+    margin: 45px auto;
+}
+.field {
+	font-size: 75px;
+    font-weight: bold;
+    cursor: pointer;
+    height: 110px;
+    line-height: 115px;
+}
+.field:hover {
+	background: #fafafa;
+}
+.field-center {
+	border-left: 2px solid #222;
+	border-right: 2px solid #222;
+}
+.horizontal-line {
+	border-bottom: 2px solid #222;
 }
