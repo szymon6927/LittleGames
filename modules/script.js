@@ -28,7 +28,7 @@ class BitMarket {
       service: 'gmail',
       auth: {
         user: 'miks.szymon@gmail.com',
-        pass: 'Szymon12@'
+        pass: '********'
       },
       tls: {
         rejectUnauthorized: false
