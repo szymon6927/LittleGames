@@ -9,19 +9,42 @@
 <div class="tictactoe-wraper">
   <div class="tictactoe">
     <div class="row horizontal-line mb0">
-      <span class="col s4 field"></span>
-      <span class="col s4 field field-center"></span>
-      <span class="col s4 field"></span>
+      <span id="1" class="col s4 field"></span>
+      <span id="2" class="col s4 field field-center"></span>
+      <span id="3" class="col s4 field"></span>
     </div>
     <div class="row horizontal-line mb0">
-      <span class="col s4 field"></span>
-      <span class="col s4 field field-center"></span>
-      <span class="col s4 field"></span>
+      <span id="4" class="col s4 field"></span>
+      <span id="5" class="col s4 field field-center"></span>
+      <span id="6" class="col s4 field"></span>
     </div>
     <div class="row mb0">
-      <span class="col s4 field"></span>
-      <span class="col s4 field field-center"></span>
-      <span class="col s4 field"></span>
+      <span id="7" class="col s4 field"></span>
+      <span id="8" class="col s4 field field-center"></span>
+      <span id="9" class="col s4 field"></span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col m12 s12 center-align">
+      <a class="waves-effect waves-light btn modal-trigger" href="#site_select">Rozpocznij grę</a>
+      <a class="waves-effect waves-light btn clear">Zacznij od nowa</a>
+      <!-- Modal Structure -->
+      <div id="site_select" class="modal">
+        <div class="modal-content">
+          <h4>Wybierz znak</h4>
+          <p>
+            <input class="select-char" name="char" type="radio" id="char_x" value="X"/>
+            <label class="choose-char" for="char_x">X</label>
+          </p>
+          <p>
+            <input class="select-char" name="char" type="radio" id="char_o" value="O" />
+            <label class="choose-char" for="char_o">O</label>
+          </p>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">START!</a>
+        </div>
+      </div>
     </div>
   </div>
 </div>
