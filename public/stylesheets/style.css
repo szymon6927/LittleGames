@@ -52,3 +52,7 @@ strong {
 .horizontal-line {
 	border-bottom: 2px solid #222;
 }
+.choose-char {
+	font-size: 22px !important;
+    color: #222;
+}
