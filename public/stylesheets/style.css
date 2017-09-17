@@ -45,6 +45,9 @@ strong {
 .field:hover {
 	background: #fafafa;
 }
+.field em {
+	color: #f11c1c;
+}
 .field-center {
 	border-left: 2px solid #222;
 	border-right: 2px solid #222;
