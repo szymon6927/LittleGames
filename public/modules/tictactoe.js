@@ -43,30 +43,44 @@ class TicTacToe {
   userChose(id) {
     this.humanMove.push(parseInt(id));
     this.busyIndexes.push(parseInt(id));
-    $(`#${id}`).html(this.human);
-    this.countPossible();
-    this.detectWin(this.humanMove, "human");
-    this.computerChoose();
+    $(`#${id}`).html(this.human)
+    setTimeout(() => {
+      this.countPossible();
+
+    // sprawdz ostatecznie wynik wygranej zamin komputer da swój ruch
+      this.finalWinner(this.humanMove, "Human");
+
+      this.computerChoose();
+    },300);
+
+  }
+
+  computerAdd(elem) {
+    this.computerMoves.push(elem);
+    this.busyIndexes.push(elem);
+    $(`#${elem}`).html(`<em>${this.computer}</em>`)
+    console.log("computer po rysowaniu");
+    setTimeout(() => {
+      this.finalWinner(this.computerMoves, "Computer");
+    },300)
   }
 
   computerChoose() {
     let possibleMove = this.possibleIndexes;
-    console.log(possibleMove);
     let win;
+    let winVictory;
 
     for(let i=0; i<possibleMove.length;i++) {
-      console.log("Sprawdzam dla ruchu: ", possibleMove[i]);
       // sprawdzam gdyby ten ruch był na człowieku
       this.humanMove.push(possibleMove[i])
-      win = this.detectWin(this.humanMove, "human");
-      if(win) {
-        console.log("win dla człowieka");
+      win = this.detectWin(this.humanMove, "human")
+      winVictory = win.victory;
+      if(winVictory) {
         // usuam tel elemnt z tablicy ruchow czlowieka
         this.humanMove.pop();
-        this.computerMoves.push(possibleMove[i]);
-        this.busyIndexes.push(possibleMove[i]);
-        $(`#${possibleMove[i]}`).html(this.computer);
-        console.log("human arr ", this.humanMove, "\n computer ", this.computerMoves);
+        this.computerAdd(possibleMove[i]);
+        //sprawdz ostateczny wynik wygranje po ruchu komputera
+        
         return;
       }
       else {
@@ -75,39 +89,35 @@ class TicTacToe {
 
       this.computerMoves.push(possibleMove[i]);
       win = this.detectWin(this.computerMoves, "computer");
+      winVictory = win.victory;
       this.computerMoves.pop();
-      if(win) {
-        console.log("win dla compa");
-        this.computerMoves.push(possibleMove[i]);
-        this.busyIndexes.push(possibleMove[i]);
-        $(`#${possibleMove[i]}`).html(this.computer);
-        console.log("human arr ", this.humanMove, "\n computer ", this.computerMoves);
+      if(winVictory) {
+        this.computerAdd(possibleMove[i]);
         return;
       }
     }
     let temp = this.busyIndexes;
+    if(temp.length == 1) {
+      let item = AI_BEST_MOVE[Math.floor(Math.random()*AI_BEST_MOVE.length)];
+      console.log(item)
+      this.computerAdd(item);
+      return;
+    }
     for(let j=0; j<AI_BEST_MOVE.length; j++) {
       if(!temp.includes(AI_BEST_MOVE[j])) {
-        this.computerMoves.push(AI_BEST_MOVE[j]);
-        this.busyIndexes.push(AI_BEST_MOVE[j]);
-        $(`#${AI_BEST_MOVE[j]}`).html(this.computer);
-        console.log("biore z najlepszych ruchow");
-        console.log("human arr ", this.humanMove, "\n computer ", this.computerMoves);
+        this.computerAdd(AI_BEST_MOVE[j])
         return;
       }
     }
-    
-    this.countPossible();
   }
 
   detectWin(moveArr, player) {
     let victory = false;
     let count = 0;
     if(moveArr.length >= 3) {
-      console.log(player, "   ", moveArr);
       for(let i=0; i<WIN_SOLUTIONS.length;i++) {
         let win = WIN_SOLUTIONS[i];
-        for(let j=0;j<moveArr.length;j++) {
+        for(let j=0;j<moveArr.length;j++)  {
           if(win.includes(moveArr[j])) {
             count += 1;
           }
@@ -123,14 +133,28 @@ class TicTacToe {
 
     if(victory) {
       console.log(`Winner ${player}`);
-      // alert(`Winner ${player}`);
     }
 
-    // if(this.busyIndexes == 9 && !victory) {
-    //   alert("DRAW!");
-    // }
+    return {
+      victory: victory,
+      player: player
+    };
+  }
 
-    return victory;
+  finalWinner(arr, player) {
+    let win = this.detectWin(arr, player);
+    let winVictory = win.victory;
+    let winPlayer = win.player;
+    console.log(`final winner, victory ${winVictory}, player ${winPlayer}`);
+    // warunek jeżeli remis
+    if(this.possibleIndexes.length == 0 && winVictory == false) {
+      alert("Draw");
+      this.clear();
+    }
+    if(winVictory) {
+      alert(`Zwyciężca to: ${winPlayer}`);
+      this.clear();
+    }
   }
 
   clear() {
@@ -141,6 +165,7 @@ class TicTacToe {
     $('.field').each((index, elem) => {
       $(elem).html('');
     });
+    this.countPossible();
   }
 }
 
@@ -166,7 +191,15 @@ $(document).ready(function() {
 
   $('.field').click((event) => {
     let elem_id = $(event.currentTarget).attr('id');
-    tictactoe.userChose(elem_id);
+    let busyElem = tictactoe.busyIndexes;
+    console.log("Zajete indkex click", busyElem);
+    console.log("kilkniete id", elem_id);
+    if(busyElem.includes(parseInt(elem_id))) {
+      alert("W tym miejscu jest juz znak");
+    }
+    else {
+      tictactoe.userChose(elem_id);
+    }
   });
 
   $('.clear').click((event) => {
