@@ -33,17 +33,31 @@
         <div class="modal-content">
           <h4>Wybierz znak</h4>
           <p>
-            <input class="select-char" name="char" type="radio" id="char_x" value="X"/>
+            <input class="select-char" name="char" type="radio" id="char_x" value="X" />
             <label class="choose-char" for="char_x">X</label>
           </p>
           <p>
             <input class="select-char" name="char" type="radio" id="char_o" value="O" />
             <label class="choose-char" for="char_o">O</label>
           </p>
+          <p>
+            <div class="level-info">Wybierz poziom trudności</div>
+            <input class="with-gap level" name="level_choose" type="radio" id="level_beginner" value="low" />
+            <label class="level-desc" for="level_beginner">Łatwy</label>
+            <input class="with-gap level" name="level_choose" type="radio" id="level_master" value="high" />
+            <label class="level-desc" for="level_master">Trudny</label>
+          </p>
         </div>
         <div class="modal-footer">
           <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">START!</a>
         </div>
+      </div>
+    </div>
+    <div id="verdict" class="modal">
+      <div class="modal-content">
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">OK!</a>
       </div>
     </div>
   </div>
