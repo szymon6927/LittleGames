@@ -15,6 +15,7 @@ class TicTacToe {
   constructor() {
     this.human = '';
     this.computer = '';
+    this.level = '';
     this.humanMove = [];
     this.computerMoves = [];
     this.busyIndexes = [];
@@ -28,6 +29,10 @@ class TicTacToe {
 
   setComputer(char) {
     this.computer = char;
+  }
+
+  setLevel(str) {
+    this.level = str;
   }
 
   countPossible() {
@@ -46,10 +51,8 @@ class TicTacToe {
     $(`#${id}`).html(this.human)
     setTimeout(() => {
       this.countPossible();
-
-    // sprawdz ostatecznie wynik wygranej zamin komputer da swój ruch
+      // sprawdz ostatecznie wynik wygranej zamin komputer da swój ruch
       this.finalWinner(this.humanMove, "Human");
-
       this.computerChoose();
     },300);
 
@@ -97,7 +100,8 @@ class TicTacToe {
       }
     }
     let temp = this.busyIndexes;
-    if(temp.length == 1) {
+    console.log("ruch", this.level);
+    if(this.level == "low" && temp.length == 1) {
       let item = AI_BEST_MOVE[Math.floor(Math.random()*AI_BEST_MOVE.length)];
       console.log(item)
       this.computerAdd(item);
@@ -148,11 +152,27 @@ class TicTacToe {
     console.log(`final winner, victory ${winVictory}, player ${winPlayer}`);
     // warunek jeżeli remis
     if(this.possibleIndexes.length == 0 && winVictory == false) {
-      alert("Draw");
+      // alert("Draw");
+      $('#verdict').modal('open');
+      $('#verdict .modal-content').html(`
+      <div class="final-text">
+        <span class="winner-icon"><i class="material-icons">done</i></span>
+        <div class="final-text">Gratulacje gra dobiegła końca</div>
+        <div class=final-player">Ogłaszam: <strong>remis!</strong></div>
+      </div>
+    `);
       this.clear();
     }
     if(winVictory) {
-      alert(`Zwyciężca to: ${winPlayer}`);
+      // alert(`Zwyciężca to: ${winPlayer}`);
+      $('#verdict').modal('open');
+      $('#verdict .modal-content').html(`
+        <div class="final-text">
+          <span class="winner-icon"><i class="material-icons">done</i></span>
+          <div class="final-text">Gratulacje gra dobiegła końca</div>
+          <div class=final-player">Zwyciężca to: <strong>${winPlayer}</strong></div>
+        </div>
+      `);
       this.clear();
     }
   }
@@ -174,6 +194,7 @@ $(document).ready(function() {
   var tictactoe = new TicTacToe();
   var userSelect;
   var AI_char;
+  var level;
 
   $('.modal-close').click(function() {
     if($('#char_x').is(':checked')) {
@@ -184,8 +205,16 @@ $(document).ready(function() {
       userSelect = $('#char_o').val();
       AI_char = $('#char_x').val();
     }
+    if($('#level_master').is(':checked')) {
+      level = $('#level_master').val();
+    }
+    if($('#level_beginner').is(':checked')) {
+      level = $('#level_beginner').val();
+    }
     tictactoe.setHuman(userSelect);
     tictactoe.setComputer(AI_char);
+    console.log("level", level);
+    tictactoe.setLevel(level);
     tictactoe.clear();
   })
 
