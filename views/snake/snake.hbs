@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <div class="col s12">
+      <div class="main-title">{{title}}</div>
+      <div class="subtitle">{{text}}</div>
+    </div>
+    <div class="col s6">
+      <div class="snake-container">
+        <canvas id="snake" width="500" height="500"></canvas>
+      </div>
+    </div>
+    <div class="col s6">
+      <div class="flow-text">Ranking graczy</div>
+      <ul class="collection with-header">
+        <li class="collection-header"><h4>Dawid - 30</h4></li>
+        <li class="collection-item">Szymon - 20</li>
+        <li class="collection-item">Wojtek - 15</li>
+        <li class="collection-item">Aga - 10</li>
+        <li class="collection-item">Mikolaj - 5</li>
+      </ul>
+      <div class="start-game-text">
+        Podaj nickname i kliknij przycisk rozpocznij grę
+      </div>
+      <div class="input-field col s12">
+        <i class="material-icons prefix">account_circle</i>
+        <input id="nickname" id="icon_prefix" type="text" class="validate" value="">
+        <label for="icon_prefix">Nick</label>
+      </div>
+      <a id="start_snake" class="waves-effect waves-light btn">Rozpocznij</a>
+      <a id="stop_snake" class="waves-effect waves-light btn">PAUZA</a>
+    </div>
+  </div>
+</div>
+{{!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.js"></script> --}}
+<script src="/modules/snake/snake.js"></script>
