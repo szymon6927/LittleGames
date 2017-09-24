@@ -88,3 +88,14 @@ strong {
     padding-top: 5px;
     font-size: 18px;
 }
+
+.start-game-text {
+    border-top: 2px solid #900000;
+    padding-top: 10px;
+    font-size: 22px;
+    font-family: monospace;
+    text-shadow: 1px 1px 1px #cacaca;
+}
+canvas {
+    border: 5px solid #ECF0F1;
+}
