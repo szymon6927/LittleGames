@@ -10,6 +10,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var bitmarket = require('./routes/bitmarket');
 var tictactoe = require('./routes/tictactoe');
+var snake = require('./routes/snake');
 
 var app = express();
 
@@ -32,6 +33,7 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/bitmarket', bitmarket);
 app.use('/tictactoe', tictactoe);
+app.use('/snake', snake);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
