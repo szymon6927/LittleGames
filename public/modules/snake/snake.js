@@ -104,6 +104,25 @@ class SnakeGame {
     return false;
   }
 
+  saveData() {
+    console.log("saveData");
+    $.ajax({
+      method: "POST",
+      url: "http://localhost:3000/snake/save-result",
+      data: { 
+        nickname: this.player, 
+        score: this.score 
+      },
+      success: function() {
+        console.log("Ajax success");
+
+      },
+      error: function() {
+        console.log("Ajax error save result");
+      }
+    })
+  }
+
   gameOver() {
     clearInterval(GAME_LOOP);
 
@@ -114,7 +133,9 @@ class SnakeGame {
     CTX.textAlign = "center";
     CTX.fillText(`Twój wynik to: ${this.score}!`, CANVAS_WIDTH/2, CANVAS_HEIGHT/2+30)
 
+    
     setTimeout(() => {
+      this.saveData();
       this.init();  
       $('#start_snake').attr("disabled", false);
       $('#start_snake').html("Rozpocznij");
