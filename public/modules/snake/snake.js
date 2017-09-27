@@ -16,12 +16,17 @@ class SnakeGame {
     this.direction = "right" // defult direction
     this.score = 0;
     this.player = "";
+    this.speed = 0;
     this.init();
     this.keyboardControl();
   }
 
   setPlayerName(nicname) {
     this.player = nicname;
+  }
+
+  setSpeed(speed) {
+    this.speed = parseInt(speed);
   }
 
   drawBoard() {
@@ -44,20 +49,16 @@ class SnakeGame {
     let randomX = Math.round(Math.random()*(width-cellsW)/cellsW);
     let randomY = Math.round(Math.random()*(height-cellsW)/cellsW);
 
-    console.log(randomX, randomY);
-
     let head = this.snakeArray[this.snakeArray.length - 1];
     let tail = this.snakeArray[0];
 
-    // for(let j in this.snakeArray) {
-      if(randomX != head.x && randomY != tail.y) {
-        this.food.x = randomX;
-        this.food.y = randomY;
-      }
-      else {
-        this.createFood();
-      }
-    // }
+    if(randomX != head.x && randomY != tail.y) {
+      this.food.x = randomX;
+      this.food.y = randomY;
+    }
+    else {
+      this.createFood();
+    }
   } 
 
   drawCells(x, y, color) {
@@ -69,6 +70,7 @@ class SnakeGame {
   init() {
     this.drawBoard();
     this.snakeArray = [];
+    this.score = 0;
     
     this.createSnake();
     this.createFood();
@@ -96,11 +98,28 @@ class SnakeGame {
 
     for(let j in arr) {
       if(arr[j].x == x && arr[j].y == y) {
-        clearInterval(GAME_LOOP);
         return true;
       }
     }
     return false;
+  }
+
+  gameOver() {
+    clearInterval(GAME_LOOP);
+
+    CTX.font = "30px monospace";
+    CTX.fillStyle = "#ECF0F1";
+    CTX.textAlign = "center";
+    CTX.fillText(`Game Over - ${this.player}!`, CANVAS_WIDTH/2, CANVAS_HEIGHT/2);
+    CTX.textAlign = "center";
+    CTX.fillText(`Twój wynik to: ${this.score}!`, CANVAS_WIDTH/2, CANVAS_HEIGHT/2+30)
+
+    setTimeout(() => {
+      this.init();  
+      $('#start_snake').attr("disabled", false);
+      $('#start_snake').html("Rozpocznij");
+    },7000);
+    
   }
 
   game() {
@@ -116,10 +135,7 @@ class SnakeGame {
     else if(this.direction == "down") snakeHead_y++;
     
     if(this.checkCollision(snakeHead_x, snakeHead_y, this.snakeArray)) {
-      alert("Looser");
-      this.init();
-      $('#start_snake').attr("disabled", false);
-      $('#start_snake').html("Rozpocznij");
+      this.gameOver();
       return;
     };
 
@@ -161,15 +177,19 @@ class SnakeGame {
     let playerText = `Gracz: ${this.player}`;
     CTX.font="14px monospace";
     CTX.fillStyle="#CACACA";
+    CTX.textAlign = "left";
     CTX.fillText(scoreText, 5, CANVAS_HEIGHT-10);
     CTX.fillStyle="#14CC14";
-    CTX.fillText(playerText, CANVAS_WIDTH-150, CANVAS_HEIGHT-10);
+    CTX.textAlign = "right";
+    CTX.fillText(playerText, CANVAS_WIDTH-10 ,CANVAS_HEIGHT-10);
   }
 
   gameLoop() {
+    let gameSpeed = Math.floor(300/this.speed);
+    console.log(gameSpeed);
     GAME_LOOP = setInterval( () => {
       this.game()
-    },100)
+    },gameSpeed)
   }
 }
 
@@ -177,10 +197,12 @@ $(document).ready(function() {
   let snakeGame = new SnakeGame();
   $('#start_snake').click(function() {
     let nickname = $('#nickname').val();
+    let speed = $('#snake_speed').val();
     if(nickname) {
       $('#start_snake').html("WZNÓW")
       $(this).attr("disabled", true);
       snakeGame.setPlayerName(nickname)
+      snakeGame.setSpeed(speed);
       snakeGame.gameLoop();
     }
     else {
