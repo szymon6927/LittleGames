@@ -11,10 +11,8 @@ var schema = new Schema({
 
 var snakeResult = mongoose.model('snake-result', schema);
 
-console.log("snake")
-
 router.get('/', function(req, res, next) {
-  snakeResult.find()
+  snakeResult.find().sort({ 'score': 'desc'}).limit(5)
     .then(function(result) {
       console.log(result);
       res.render('snake/snake', {
@@ -24,5 +22,16 @@ router.get('/', function(req, res, next) {
       });
     });
 });
+
+router.post('/save-result', function(req, res) {
+  let info = {
+    nickname: req.body.nickname,
+    score: req.body.score
+  }
+  let result = new snakeResult(info);
+  result.save();
+
+  console.log("server", info);
+})
 
 module.exports = router;
