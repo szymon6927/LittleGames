@@ -104,8 +104,25 @@ class SnakeGame {
     return false;
   }
 
+  changeRankingContent() {
+    $.ajax({ 
+      url: 'http://localhost:3000/snake',
+      type: 'GET',
+      dataType: 'html',
+      success: function(data) {
+        console.log("Rendering success");
+        let ranking = $(data).find('ul.collection');
+        $('.snake-ranking').hide().html(ranking).fadeIn('slow');
+      },
+      error: function(err) {
+        console.log("Rendering error: ", err);
+      }
+   })
+  }
+
   saveData() {
     console.log("saveData");
+    let self = this;
     $.ajax({
       method: "POST",
       url: "http://localhost:3000/snake/save-result",
@@ -113,14 +130,17 @@ class SnakeGame {
         nickname: this.player, 
         score: this.score 
       },
-      success: function() {
+      success: function(data) {
         console.log("Ajax success");
-
+        console.log(data);
       },
       error: function() {
         console.log("Ajax error save result");
       }
-    })
+    }).done(function(){
+      console.log("test");
+      self.changeRankingContent();
+    });
   }
 
   gameOver() {
@@ -133,7 +153,6 @@ class SnakeGame {
     CTX.textAlign = "center";
     CTX.fillText(`Twój wynik to: ${this.score}!`, CANVAS_WIDTH/2, CANVAS_HEIGHT/2+30)
 
-    
     setTimeout(() => {
       this.saveData();
       this.init();  
