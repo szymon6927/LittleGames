@@ -11,11 +11,19 @@
     </div>
     <div class="col s6">
       <div class="flow-text">Ranking graczy</div>
-      <ul class="collection with-header">
-        {{#each result}}
-          <li class="collection-item">{{nickname}} - {{score}}</li>
-        {{/each}}
-      </ul>
+      <div class="snake-ranking">
+        <ul class="collection with-header">
+          {{#each result}}
+            <li class="{{#if @first}}collection-header{{else}}collection-item{{/if}}">
+              {{#if @first}}
+                <h5>{{inc @index}}. {{nickname}} - {{score}}</h5>
+              {{else}}
+                {{inc @index}}. {{nickname}} - {{score}}
+              {{/if}}
+            </li>
+          {{/each}}
+        </ul>
+      </div>
       <div class="start-game-text">
         Podaj nickname i rozpocznij grę
       </div>
