@@ -32,6 +32,7 @@ router.post('/save-result', function(req, res) {
   result.save();
 
   console.log("server", info);
+  res.send(req.body);
 })
 
 module.exports = router;
