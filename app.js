@@ -18,9 +18,19 @@ var app = express();
 // mongoose.connect('mongodb://127.0.0.1:27017/snake');
 mongoose.connect('mongodb://127.0.0.1:27017/snake', { useMongoClient: true });
 
+var hbs = expressHbs.create({
+  // Specify helpers which are only registered on this instance.
+  defaultLayout: 'layout', 
+  extname: '.hbs',
+  helpers: {
+    inc: function (value) {  return parseInt(value) + 1; }
+  }
+});
 // view engine setup
-app.engine('.hbs', expressHbs({defaultLayout: 'layout', extname: '.hbs'}));
+app.engine('.hbs', hbs.engine);
 app.set('view engine', 'hbs');
+
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
