@@ -4,6 +4,7 @@ const CANVAS_WIDTH = $('#snake').width();
 const CANVAS_HEIGHT = $('#snake').height();
 const CTX = CANVAS.getContext("2d");
 var GAME_LOOP = null;
+var TIME_COUNTER = null;
 
 class SnakeGame {
   constructor() {
@@ -17,6 +18,7 @@ class SnakeGame {
     this.score = 0;
     this.player = "";
     this.speed = 0;
+    this.time = 0;
     this.init();
     this.keyboardControl();
   }
@@ -71,6 +73,7 @@ class SnakeGame {
     this.drawBoard();
     this.snakeArray = [];
     this.score = 0;
+    this.time = 0;
     
     this.createSnake();
     this.createFood();
@@ -128,7 +131,8 @@ class SnakeGame {
       url: "http://localhost:3000/snake/save-result",
       data: { 
         nickname: this.player, 
-        score: this.score 
+        score: this.score,
+        time: this.time
       },
       success: function(data) {
         console.log("Ajax success");
@@ -143,8 +147,25 @@ class SnakeGame {
     });
   }
 
+  timeCounter() {
+    this.time++;
+    let timewatch = ``;
+    let minutes = Math.floor(this.time / 60);
+    if(minutes < 10) {
+      minutes = `0${minutes}`;
+    }
+    let seconds = this.time - (minutes * 60);
+    if(seconds < 10) {
+      seconds = `0${seconds}`;
+    }
+    timewatch = `${minutes}:${seconds}`;
+    $('#time-counter').css('display', 'block');
+    $('#time-counter .time').html(timewatch);
+  }
+
   gameOver() {
     clearInterval(GAME_LOOP);
+    clearInterval(TIME_COUNTER);
 
     CTX.font = "30px monospace";
     CTX.fillStyle = "#ECF0F1";
@@ -230,10 +251,15 @@ class SnakeGame {
     GAME_LOOP = setInterval( () => {
       this.game()
     },gameSpeed)
+    // miernik czasu gry
+    TIME_COUNTER = setInterval( () => {
+      this.timeCounter();
+    },1000)
   }
 }
 
 $(document).ready(function() {
+  $('.modal').modal();
   let snakeGame = new SnakeGame();
   $('#start_snake').click(function() {
     let nickname = $('#nickname').val();
@@ -246,11 +272,12 @@ $(document).ready(function() {
       snakeGame.gameLoop();
     }
     else {
-      alert("Podaj nazwę gracza");
+      $('#type_nickname').modal('open');
     }
   })
   $('#stop_snake').click(function() {
     clearInterval(GAME_LOOP);
+    clearInterval(TIME_COUNTER);
     $('#start_snake').attr("disabled", false);
   });
 });
