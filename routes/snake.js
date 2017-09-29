@@ -6,7 +6,8 @@ var Schema = mongoose.Schema;
 
 var schema = new Schema({
   nickname: {type: String, required: true},
-  score: {type: Number, required: true}
+  score: {type: Number, required: true},
+  time: {type: Number, required: false}
 },{ collection : 'snake_result' });
 
 var snakeResult = mongoose.model('snake-result', schema);
@@ -26,7 +27,8 @@ router.get('/', function(req, res, next) {
 router.post('/save-result', function(req, res) {
   let info = {
     nickname: req.body.nickname,
-    score: req.body.score
+    score: req.body.score,
+    time: req.body.time
   }
   let result = new snakeResult(info);
   result.save();
