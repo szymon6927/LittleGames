@@ -16,6 +16,15 @@ strong {
 .mb20 {
 	margin-bottom: 20px;
 }
+.pt10 {
+    padding-top: 10px;
+}
+.pb10 {
+    padding-bottom: 10px;
+}
+.txt-shadow-1 {
+    text-shadow: 1px 1px 1px #cacaca;
+}
 .main-title {
 	border-bottom: 1px solid #ccc;
 	font-size: 28px;
@@ -91,7 +100,7 @@ strong {
     padding-top: 5px;
     font-size: 18px;
 }
-
+/* CSS dla Snake */
 .start-game-text {
     border-top: 2px solid #900000;
     padding-top: 10px;
@@ -101,4 +110,34 @@ strong {
 }
 canvas {
     border: 5px solid #ECF0F1;
+}
+#type_nickname h4 {
+    border-bottom: 1px solid #222;
+    padding-bottom: 5px;
+}
+#type_nickname .modal-footer {
+    border-top: 1px solid #222
+}
+#type_nickname a {
+    font-size: 1.2rem;
+}
+.range-field {
+    padding-top: 20px !important;
+}
+#time-counter {
+    display: none;
+    font-size: 22px;
+    font-family: monospace;
+    color: #e84d3d;
+    padding: 5px 15px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    background: #fafafa;
+}
+#time-counter .time-text {
+    color: #000;
+    letter-spacing: 0.001em;
+}
+.ranking-title {
+    margin: 10px 0;
 }
