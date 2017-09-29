@@ -4,40 +4,65 @@
       <div class="main-title">{{title}}</div>
       <div class="subtitle">{{text}}</div>
     </div>
-    <div class="col s6">
+    <div class="col m6 s12">
       <div class="snake-container">
         <canvas id="snake" width="500" height="500"></canvas>
       </div>
     </div>
-    <div class="col s6">
-      <div class="flow-text">Ranking graczy</div>
-      <div class="snake-ranking">
-        <ul class="collection with-header">
-          {{#each result}}
-            <li class="{{#if @first}}collection-header{{else}}collection-item{{/if}}">
-              {{#if @first}}
-                <h5>{{inc @index}}. {{nickname}} - {{score}}</h5>
-              {{else}}
-                {{inc @index}}. {{nickname}} - {{score}}
-              {{/if}}
-            </li>
-          {{/each}}
-        </ul>
+    <div class="col m6 s12 card">
+      <div class="row">
+        <div class="col m12 s12">
+          <div class="ranking-title flow-text">Ranking graczy</div>
+          <div class="snake-ranking">
+            <ul class="collection with-header">
+              {{#each result}}
+                <li class="{{#if @first}}collection-header{{else}}collection-item{{/if}}">
+                  {{#if @first}}
+                    <h5>{{inc @index}}. {{nickname}} - {{score}}</h5>
+                  {{else}}
+                    {{inc @index}}. {{nickname}} - {{score}}
+                  {{/if}}
+                </li>
+              {{/each}}
+            </ul>
+          </div>
+        </div>
+        <div class="col m12 s12">
+          <div class="start-game-text">
+            Podaj nickname i rozpocznij grę
+          </div>
+          <div class="col s6 input-field">
+            <i class="material-icons prefix">account_circle</i>
+            <input id="nickname" id="icon_prefix" type="text" class="validate" value="">
+            <label for="icon_prefix">Nick</label>
+          </div>
+          <div class="col s6 range-field">
+            <p class="mb0 mt0">Szybkość rozgrywki</p>
+            <input type="range" id="snake_speed" min="1" max="10" value="4"/>
+          </div>
+        </div>
+        <div class="col m6 s12">
+          <div id="time-counter" class="z-depth-1">
+            <span class="time-text">Czas gry: </span>
+            <span class="time txt-shadow-1"></span>
+          </div>
+        </div>
+        <div class="col m6 s12 pt10">
+          <div class="game-controlers pt10">
+            <a id="start_snake" class="waves-effect waves-light btn">Rozpocznij</a>
+            <a id="stop_snake" class="waves-effect waves-light btn">PAUZA</a>
+          </div>
+        </div>
       </div>
-      <div class="start-game-text">
-        Podaj nickname i rozpocznij grę
-      </div>
-      <div class="input-field col s12">
-        <i class="material-icons prefix">account_circle</i>
-        <input id="nickname" id="icon_prefix" type="text" class="validate" value="">
-        <label for="icon_prefix">Nick</label>
-      </div>
-      <div class="col s12 range-field">
-        <p class="mb0 mt0">Szybkość rozgrywki</p>
-        <input type="range" id="snake_speed" min="1" max="10" value="4"/>
-      </div>
-      <a id="start_snake" class="waves-effect waves-light btn">Rozpocznij</a>
-      <a id="stop_snake" class="waves-effect waves-light btn">PAUZA</a>
+    </div>
+  </div>
+  <div id="type_nickname" class="modal">
+    <div class="modal-content">
+      <h4>Błąd :(</h4>
+      <p class="flow-text center-align txt-shadow-1 mb0">Podaj nickname!</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">OK</a>
     </div>
   </div>
 </div>
