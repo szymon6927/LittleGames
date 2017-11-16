@@ -9,7 +9,6 @@ var mongoose = require('mongoose');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-var bitmarket = require('./routes/bitmarket');
 var tictactoe = require('./routes/tictactoe');
 var snake = require('./routes/snake');
 
@@ -44,8 +43,6 @@ app.use('/js', express.static(__dirname + '/node_modules/materialize-css/dist/js
 app.use('/css', express.static(__dirname + '/node_modules/materialize-css/dist/css')); 
 
 app.use('/', index);
-app.use('/users', users);
-app.use('/bitmarket', bitmarket);
 app.use('/tictactoe', tictactoe);
 app.use('/snake', snake);
 
@@ -66,10 +63,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-// var schedule = require('node-schedule');
-// var j = schedule.scheduleJob('* */12 * * * *', function(){
-//  console.log('The answer to life, the universe, and everything!');
-// });
 
 module.exports = app;
