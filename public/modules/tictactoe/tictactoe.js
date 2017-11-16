@@ -62,7 +62,6 @@ class TicTacToe {
     this.computerMoves.push(elem);
     this.busyIndexes.push(elem);
     $(`#${elem}`).html(`<em>${this.computer}</em>`)
-    console.log("computer po rysowaniu");
     setTimeout(() => {
       this.finalWinner(this.computerMoves, "Computer");
     },300)
@@ -100,10 +99,8 @@ class TicTacToe {
       }
     }
     let temp = this.busyIndexes;
-    console.log("ruch", this.level);
     if(this.level == "low" && temp.length == 1) {
       let item = AI_BEST_MOVE[Math.floor(Math.random()*AI_BEST_MOVE.length)];
-      console.log(item)
       this.computerAdd(item);
       return;
     }
@@ -128,15 +125,10 @@ class TicTacToe {
         }
         if(count == 3) {
           victory = true;
-          console.log("win", win);
           break;
         }
         count = 0;
       }
-    }
-
-    if(victory) {
-      console.log(`Winner ${player}`);
     }
 
     return {
@@ -149,7 +141,6 @@ class TicTacToe {
     let win = this.detectWin(arr, player);
     let winVictory = win.victory;
     let winPlayer = win.player;
-    console.log(`final winner, victory ${winVictory}, player ${winPlayer}`);
     // warunek jeżeli remis
     if(this.possibleIndexes.length == 0 && winVictory == false) {
       // alert("Draw");
@@ -178,7 +169,6 @@ class TicTacToe {
   }
 
   clear() {
-    console.log("clean click");
     this.humanMove = [];
     this.computerMoves = [];
     this.busyIndexes = [];
@@ -213,7 +203,6 @@ $(document).ready(function() {
     }
     tictactoe.setHuman(userSelect);
     tictactoe.setComputer(AI_char);
-    console.log("level", level);
     tictactoe.setLevel(level);
     tictactoe.clear();
   })
@@ -221,8 +210,6 @@ $(document).ready(function() {
   $('.field').click((event) => {
     let elem_id = $(event.currentTarget).attr('id');
     let busyElem = tictactoe.busyIndexes;
-    console.log("Zajete indkex click", busyElem);
-    console.log("kilkniete id", elem_id);
     if(busyElem.includes(parseInt(elem_id))) {
       alert("W tym miejscu jest juz znak");
     }
