@@ -22,6 +22,48 @@ strong {
 .pb10 {
     padding-bottom: 10px;
 }
+.header-color {
+    background: #2C3E50;
+}
+.footer-below {
+    padding: 15px 0;
+    background: #2C3E50;
+    color: #fff;
+}
+.social {
+    display: inline-block;
+    font-size: 35px;
+    padding: 0 5px;
+}
+.social a i {
+    color: #fff;
+}
+.social a i:hover {
+    color: #e74c3c;
+}
+.created {
+    float: right;
+    margin: 0;
+}
+.copyright {
+    float: left;
+}
+.social-media {
+    text-align: center;
+}
+.tictactoe-img img {
+    width: 56% !important;
+}
+.snake-img img {
+    width: 50% !important;
+}
+.card .card-image img {
+    margin: 0 auto;
+}
+.card .card-image .card-title {
+    color: #000;
+    position: relative;
+}
 .txt-shadow-1 {
     text-shadow: 1px 1px 1px #cacaca;
 }
