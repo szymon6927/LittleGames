@@ -54,11 +54,11 @@ class BitMarket {
   askAPI() {
     const request = require('request');
     return new Promise((resolve, reject) => {
-      request('https://www.bitmarket.pl/json/LTCPLN/ticker.json', function (error, response, body) {
+      request('https://bitbay.net/API/Public/LSKPLN/ticker.json', function (error, response, body) {
         if (error) {
           console.log('error:', error); // Print the error if one occurred 
         }
-        console.log('https://www.bitmarket.pl/json/LTCPLN/ticker.json -> statusCode:', response && response.statusCode); // Print the response status code if a response was received 
+        console.log('https://bitbay.net/API/Public/LSKPLN/ticker.json -> statusCode:', response && response.statusCode); // Print the response status code if a response was received 
         if (body) {
           let info = JSON.parse(body)
           resolve(info);
