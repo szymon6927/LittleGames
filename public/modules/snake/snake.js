@@ -8,7 +8,6 @@ var TIME_COUNTER = null;
 
 class SnakeGame {
   constructor() {
-    console.log("Snake game");
     this.snakeArray = [];
     this.food = {
       x: 0,
@@ -136,13 +135,11 @@ class SnakeGame {
       },
       success: function(data) {
         console.log("Ajax success");
-        console.log(data);
       },
       error: function() {
         console.log("Ajax error save result");
       }
     }).done(function(){
-      console.log("test");
       self.changeRankingContent();
     });
   }
@@ -247,7 +244,6 @@ class SnakeGame {
 
   gameLoop() {
     let gameSpeed = Math.floor(300/this.speed);
-    console.log(gameSpeed);
     GAME_LOOP = setInterval( () => {
       this.game()
     },gameSpeed)
