@@ -29,6 +29,10 @@ Dopiero teraz możemy wystartować serwer
 ```javascript
 npm start
 ```
+Aby uruchomić bazę danych należy wykonać polecenie, oraz utworzyć kolekcję o nazwie snake
+```
+mongod --dbpath sciezka/do/bazy
+```
 Aplikacja jest będzie dostępna pod adresem
 ```
 http://localhost:3000/
