@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressHbs = require('express-handlebars');
 var mongoose = require('mongoose');
+var { spawn } = require('child_process');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -14,8 +15,9 @@ var snake = require('./routes/snake');
 
 var app = express();
 
-// mongoose.connect('mongodb://127.0.0.1:27017/snake');
+// uruchomienie bazy mongod mongod --dbpath C:/MongoDB/database
 mongoose.connect('mongodb://127.0.0.1:27017/snake', { useMongoClient: true });
+
 
 var hbs = expressHbs.create({
   // Specify helpers which are only registered on this instance.
