@@ -15,7 +15,7 @@ var snake = require('./routes/snake');
 
 var app = express();
 
-// uruchomienie bazy mongod mongod --dbpath C:/MongoDB/database
+// uruchomienie bazy mongod --dbpath C:/MongoDB/database
 mongoose.connect('mongodb://127.0.0.1:27017/snake', { useMongoClient: true });
 
 
