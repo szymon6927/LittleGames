@@ -2,6 +2,7 @@
 Thumbs.db
 ehthumbs.db
 Desktop.ini
+.idea
 
 # npm
 node_modules
