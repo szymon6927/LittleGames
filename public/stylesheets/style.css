@@ -1,5 +1,8 @@
 html {
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Telex', sans-serif;
+}
+body {
+    background: #ECF0F1;
 }
 strong {
     font-weight: 600;
@@ -15,6 +18,9 @@ strong {
 }
 .mb20 {
 	margin-bottom: 20px;
+}
+.mb30 {
+    margin-bottom: 30px;
 }
 .pt10 {
     padding-top: 10px;
@@ -52,10 +58,10 @@ strong {
     text-align: center;
 }
 .tictactoe-img img {
-    width: 56% !important;
+    width: 47% !important;
 }
 .snake-img img {
-    width: 50% !important;
+    width: 42% !important;
 }
 .card .card-image img {
     margin: 0 auto;
@@ -100,7 +106,7 @@ strong {
 	background: #fafafa;
 }
 .field em {
-	color: #f11c1c;
+    color: #E74C3C;
 }
 .field-center {
 	border-left: 2px solid #222;
@@ -247,4 +253,24 @@ canvas {
 
 #maximize-circle {
     background-color: #1bc656
+}
+.card {
+    box-shadow: 0 0 10px 0 rgba(10, 10, 10, .2);
+    transition: .25s;
+}
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 22px 43px rgba(0, 0, 0, 0.15);
+}
+.card-action a {
+    font-size: 22px;
+    text-align: center;
+    letter-spacing: 0.09em;
+    font-weight: 600;
+}
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating):hover {
+    color: #E74C3C;
+}
+nav ul a:hover {
+    background-color: #3498DB;
 }
