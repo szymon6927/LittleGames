@@ -12,7 +12,8 @@ $(window).bind("load", function () {
 
   function positionFooter() {
     footerHeight = $footer.height();
-    // 20 is as padding height
+    
+    // 30 is as padding height
     footerTop = ($(window).scrollTop() + $(window).height() - footerHeight - 30) + "px";
 
     if (($(document.body).height() + footerHeight) < $(window).height()) {
