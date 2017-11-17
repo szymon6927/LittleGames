@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressHbs = require('express-handlebars');
 var mongoose = require('mongoose');
-var { spawn } = require('child_process');
+var sass = require('node-sass-middleware');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -39,10 +39,18 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(
+  sass({
+    src: __dirname + '/sass',
+    dest: __dirname + '/public/stylesheets',
+    prefix: '/stylesheets',
+    debug: true,
+  })
+);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/js', express.static(__dirname + '/node_modules/jquery/dist')); // redirect JS jQuery
 app.use('/js', express.static(__dirname + '/node_modules/materialize-css/dist/js'));
-app.use('/css', express.static(__dirname + '/node_modules/materialize-css/dist/css')); 
+app.use('/css', express.static(__dirname + '/node_modules/materialize-css/dist/css'));
 
 app.use('/', index);
 app.use('/tictactoe', tictactoe);
