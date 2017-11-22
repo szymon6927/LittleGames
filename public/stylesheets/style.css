@@ -254,11 +254,11 @@ canvas {
 #maximize-circle {
     background-color: #1bc656
 }
-.card {
+.game-card {
     box-shadow: 0 0 10px 0 rgba(10, 10, 10, .2);
     transition: .25s;
 }
-.card:hover {
+.game-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 22px 43px rgba(0, 0, 0, 0.15);
 }
